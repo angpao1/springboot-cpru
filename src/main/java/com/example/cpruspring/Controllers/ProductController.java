@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/products")
 @RestController
+@CrossOrigin(origins = "*")
 public class ProductController {
 
     @Autowired
@@ -39,10 +40,9 @@ public class ProductController {
     }
 
     @DeleteMapping("/{id}")
-    public String deleteProduct(@PathVariable String id) {
+    public void deleteProduct(@PathVariable String id) {
         Product product = productRepository.findById(id).orElse(null);
         productRepository.delete(product);
-        return "Delete Product";
     }
 
 }
